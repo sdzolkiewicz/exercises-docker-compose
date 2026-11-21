@@ -24,7 +24,4 @@ services:
     environment:
       - POSTGRES_PASSWORD=secret-pw
     volumes:
-      - database:/var/lib/postgresql
-
-volumes:
-  database:
+      - ./database:/var/lib/postgresql
