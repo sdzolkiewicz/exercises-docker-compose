@@ -1,0 +1,12 @@
+services: 
+  frontend:
+    image: sdzol/frontend
+    container_name: frontend-service
+    ports:
+      - "5001:5001"
+  backend:
+    image: sdzol/backend
+    container_name: backend-service
+    ports:
+      - "8080:8080"
+  
