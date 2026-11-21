@@ -3,12 +3,12 @@ services:
     image: sdzol/frontend
     container_name: frontend-service
     ports:
-      - "5001:5001"
+      - 5001:5001
   backend:
     image: sdzol/backend
     container_name: backend-service
     ports:
-      - "8080:8080"
+      - 8080:8080
     depends_on: 
       - db
       - redis
@@ -25,3 +25,15 @@ services:
       - POSTGRES_PASSWORD=secret-pw
     volumes:
       - ./database:/var/lib/postgresql
+  nginx:
+    image: nginx
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80
