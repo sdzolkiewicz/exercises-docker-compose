@@ -4,12 +4,27 @@ services:
     container_name: frontend-service
     ports:
       - "5001:5001"
-  redis:
-    image: redis
   backend:
     image: sdzol/backend
     container_name: backend-service
     ports:
       - "8080:8080"
+    depends_on: 
+      - db
+      - redis
     environment:
       - REDIS_HOST=redis
+      - POSTGRES_HOST=db
+      - POSTGRES_PASSWORD=secret-pw
+  redis:
+    image: redis
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=secret-pw
+    volumes:
+      - database:/var/lib/postgresql
+
+volumes:
+  database:
