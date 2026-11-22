@@ -6,8 +6,6 @@ services:
       platforms:
         - "linux/amd64"
     container_name: frontend-service
-    ports:
-      - 5001:5001
   backend:
     image: sdzol/backend
     build: 
@@ -15,8 +13,6 @@ services:
       platforms:
         - "linux/amd64"
     container_name: backend-service
-    ports:
-      - 8080:8080
     depends_on: 
       - db
       - redis
