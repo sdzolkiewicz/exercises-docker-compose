@@ -1,11 +1,19 @@
 services: 
   frontend:
     image: sdzol/frontend
+    build: 
+      context: ../example-app/frontend
+      platforms:
+        - "linux/amd64"
     container_name: frontend-service
     ports:
       - 5001:5001
   backend:
     image: sdzol/backend
+    build: 
+      context: ../example-app/backend
+      platforms:
+        - "linux/amd64"
     container_name: backend-service
     ports:
       - 8080:8080
